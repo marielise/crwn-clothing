@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 
-import { auth, createUserProfileDocument } from './firebase/firebase.util';
+import { auth, createUserProfileDocument } from '../../firebase/firebase.util';
 
 import './sign-up.styles.scss';
 
@@ -44,9 +44,9 @@ class SignUp extends Component {
     }
   };
 
-  handleSubmit = (event) => {
-      const {name, value} = event.target;
-      this.setState([name]: value);
+  handleChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   };
 
   render() {
@@ -55,7 +55,7 @@ class SignUp extends Component {
       <div className='sign-up'>
         <h2 className='title'>I do not have an account</h2>
         <span>Sign up with youor email and password</span>
-        <form className='sign-up-form' onSubmit={this.hamdleSubmit}>
+        <form className='sign-up-form' onSubmit={this.handleSubmit}>
           <FormInput
             type='text'
             name='displayName'
@@ -77,6 +77,7 @@ class SignUp extends Component {
             name='password'
             value={password}
             label='Password'
+            onChange={this.handleChange}
             required
           />
           <FormInput
@@ -84,6 +85,7 @@ class SignUp extends Component {
             name='confirmPassword'
             value={confirmPassword}
             label='Confirm Password'
+            onChange={this.handleChange}
             required
           />
           <CustomButton type='submit'>Sign Up</CustomButton>
